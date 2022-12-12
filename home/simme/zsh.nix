@@ -1,7 +1,11 @@
 { pkgs, lib, config, ... }:
 
 {
-    programs.zsh = {
+  programs = {
+    starship = {
+      enable = true;
+    };
+    zsh = {
       enable = true;
       dotDir = ".config/zsh";
 
@@ -16,18 +20,19 @@
       };
 
       shellAliases = {
-        ll        = "ls -la";
-        ls        = "exa";
-        auth      = "ssh-add ~/.ssh/id_rsa";
-        dust      = "dust --si";
-        reload    = "source ~/.zshrc";
-        k         = "kubectl";
-        vi        = "nvim";
-        vim       = "nvim";
-        nano      = "nvim";
-        jj        = "juju";
+        ll = "ls -la";
+        ls = "exa";
+        auth = "ssh-add ~/.ssh/id_rsa";
+        dust = "dust --si";
+        reload = "source ~/.zshrc";
+        k = "kubectl";
+        vi = "nvim";
+        vim = "nvim";
+        nano = "nvim";
+        jj = "juju";
         speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -";
         whatsmyip = "curl ifconfig.co";
       };
     };
+  };
 }

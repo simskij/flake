@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1670513770,
+        "narHash": "sha256-muL74fsbGA8K8WlZSPNWddOiuBnC54kAajncX6nXrh4=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "054d9e3187ca00479e8036dc0e92900a384f30fd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1670794055,
@@ -15,26 +36,25 @@
         "type": "indirect"
       }
     },
-    "nixpkgs-lxdvm": {
+    "root": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs"
+      }
+    },
+    "utils": {
       "locked": {
-        "lastModified": 1669580045,
-        "narHash": "sha256-IVx9Ze3li8UNz3/dy+l1TZYWJ+aM0r6Bj8l9G7nhVCA=",
-        "owner": "astridyu",
-        "repo": "nixpkgs",
-        "rev": "29e435f098859d634d9c9370fb824c0d1ed3ed01",
+        "lastModified": 1667395993,
+        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
         "type": "github"
       },
       "original": {
-        "owner": "astridyu",
-        "ref": "lxd-vms",
-        "repo": "nixpkgs",
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
-      }
-    },
-    "root": {
-      "inputs": {
-        "nixpkgs": "nixpkgs",
-        "nixpkgs-lxdvm": "nixpkgs-lxdvm"
       }
     }
   },
