@@ -22,6 +22,7 @@
             ./home/simme/sway.nix
             ./home/simme/vscode.nix
             ./home/simme/waybar.nix
+            ./home/simme/nvim.nix
             ./home/simme/zsh.nix
           ];
         };
