@@ -1,5 +1,8 @@
 { inputs, lib, config, pkgs, ... }: {
   nixpkgs.config.allowUnfreePredicate = (_: true);
+  nixpkgs.overlays = [
+    (import ../../overlays/rambox.nix)
+  ];
   fonts.fontconfig.enable = true;
 
   home = {
@@ -9,11 +12,16 @@
     packages = with pkgs;
       [
         _1password-gui
+        afetch
+        appimage-run
+        blueberry
         cinnamon.nemo
         ctop
         direnv
         dive
         exa
+        flameshot
+        gcc
         git
         gnumake
         gnupg
@@ -21,8 +29,8 @@
         jq
         k6
         kitty
+        libnotify
         lynx
-        mako
         matterhorn
         mattermost-desktop
         mosh
@@ -30,7 +38,10 @@
         obinskit
         obsidian
         pavucontrol
+        playerctl
+        (callPackage ../../pkgs/rambox.nix { })
         ripgrep
+        rustup
         skopeo
         slurp
         spotify
@@ -44,6 +55,9 @@
         tree
         unrar
         unzip
+        wayfire
+        wdisplays
+        wcm
         wf-recorder
         wl-clipboard
         yq
@@ -55,6 +69,34 @@
             ];
           })
       ];
+  };
+
+  home.file = {
+    ".config/neofetch/config.conf" = {
+      text = ''
+        print_info() {
+          info "$(color 2)" distro
+          info "$(color 3)" uptime
+        }
+        distro_shorthand="tiny"
+        os_arch="off"
+        uptime_shorthand="tiny"
+        ascii=""
+      '';
+    };
+  };
+
+  programs.mako = {
+    enable = true;
+    textColor = "#cdd6f4";
+    backgroundColor = "#1e1e2e";
+    borderColor = "#89b4fa";
+    defaultTimeout = 5000;
+    progressColor = "#313244";
+    extraConfig = ''
+      [urgency=high]
+      border-color=#fab387
+    '';
   };
 
   programs.home-manager.enable = true;

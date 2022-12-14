@@ -21,12 +21,14 @@
             ./home/simme/home.nix
             ./home/simme/sway.nix
             ./home/simme/vscode.nix
-            ./home/simme/waybar.nix
             ./home/simme/nvim.nix
             ./home/simme/zsh.nix
           ];
         };
       };
+
+      overlay = import ./overlays/rambox.nix;
+
       nixosConfigurations = {
         juniper = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -38,6 +40,7 @@
             ./systems/juniper/networking.nix
             ./systems/juniper/networking.nix
             ./systems/juniper/users.nix
+            ./systems/juniper/steam.nix
             ./systems/juniper/virtualization.nix
             ./systems/juniper/locale.nix
           ];

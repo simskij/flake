@@ -20,18 +20,21 @@
       };
 
       shellAliases = {
+        auth = "ssh-add ~/.ssh/id_rsa";
+        code = "codium";
+        dust = "dust --si";
+        jj = "juju";
+        k = "kubectl";
         ll = "ls -la";
         ls = "exa";
-        auth = "ssh-add ~/.ssh/id_rsa";
-        dust = "dust --si";
+        nano = "nvim";
         reload = "source ~/.zshrc";
-        k = "kubectl";
+        speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -";
         vi = "nvim";
         vim = "nvim";
-        nano = "nvim";
-        jj = "juju";
-        speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -";
         whatsmyip = "curl ifconfig.co";
+        "reload.nixos" = "sudo nixos-rebuild switch --flake /home/simme/code/simskij/nixos-config";
+        "reload.home" = "home-manager switch --flake /home/simme/code/simskij/nixos-config";
       };
     };
   };
