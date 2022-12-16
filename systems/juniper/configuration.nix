@@ -40,6 +40,7 @@
       vim
       wayland
       wget
+      xdg-utils
     ];
   };
 

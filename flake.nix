@@ -18,11 +18,6 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           modules = [
             ./home/simme
-            ./home/simme/chromium.nix
-            ./home/simme/sway.nix
-            ./home/simme/vscode.nix
-            ./home/simme/nvim.nix
-            ./home/simme/zsh.nix
           ];
         };
       };

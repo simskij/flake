@@ -1,13 +1,14 @@
 {...}: {
   imports = [
     ./chromium
+    ./git
+    ./mako
+    ./neofetch
     ./nvim
+    ./pkgs
+    ./rambox
     ./sway
     ./vscode
     ./zsh
-    ./mako
-    ./neofetch
-    ./git
-    ./pkgs
   ];
 }
