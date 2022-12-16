@@ -11,7 +11,6 @@
     flameshot
     grim
     kitty
-    neofetch
     playerctl
     slurp
     swayidle
