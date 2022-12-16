@@ -27,8 +27,6 @@
         };
       };
 
-      overlay = import ./overlays/rambox.nix;
-
       nixosConfigurations = {
         juniper = nixpkgs.lib.nixosSystem {
           inherit system;

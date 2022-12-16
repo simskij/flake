@@ -26,6 +26,7 @@
       dracula-theme
       firecracker
       ignite
+      libxfs
       git
       glib
       gnome3.adwaita-icon-theme
