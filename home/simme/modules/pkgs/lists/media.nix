@@ -3,5 +3,6 @@
     pavucontrol
     spotify
     spotify-tui
+    spicetify-cli
   ];
 }

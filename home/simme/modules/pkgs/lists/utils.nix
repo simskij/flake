@@ -13,6 +13,7 @@
     obinskit
     obsidian
     quickemu
+    ranger
     ripgrep
     sshuttle
     tmux

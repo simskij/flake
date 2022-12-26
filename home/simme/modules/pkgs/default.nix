@@ -1,7 +1,9 @@
 { pkgs, ...}: {
   
   home = {
-    packages = []
+    packages = with pkgs; [
+      lutris
+    ]
       ++ (import ./lists/containers.nix pkgs).list
       ++ (import ./lists/desktop.nix pkgs).list
       ++ (import ./lists/media.nix pkgs).list

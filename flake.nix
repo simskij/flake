@@ -16,9 +16,7 @@
       homeConfigurations = {
         "simme@juniper" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          modules = [
-            ./home/simme
-          ];
+          modules = [ ./home/simme ];
         };
       };
 
@@ -26,16 +24,8 @@
         juniper = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./systems/juniper/configuration.nix
-            ./systems/juniper/bluetooth.nix
-            ./systems/juniper/boot.nix
-            ./systems/juniper/hardware-configuration.nix
-            ./systems/juniper/networking.nix
-            ./systems/juniper/networking.nix
-            ./systems/juniper/users.nix
-            ./systems/juniper/steam.nix
-            ./systems/juniper/virtualization.nix
-            ./systems/juniper/locale.nix
+            ./hardware/juniper
+            ./system
           ];
         };
       };

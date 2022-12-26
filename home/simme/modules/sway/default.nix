@@ -136,6 +136,17 @@
         extraConfigEarly = ''
           exec GDK_BACKEND=wayland ulauncher --hide-window
           default_border none 0
+
+          workspace 1  output HDMI-A-1
+          workspace 2  output HDMI-A-1	 
+          workspace 3  output HDMI-A-1	
+          workspace 4  output HDMI-A-1	
+          workspace 5  output HDMI-A-1	
+          workspace 6  output DP-4
+          workspace 7  output DP-4
+          workspace 8  output DP-4
+          workspace 9  output DP-4
+          workspace 10 output DP-4
         '';
 
       };

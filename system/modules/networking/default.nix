@@ -2,9 +2,6 @@
 
 {
   networking = {
-    hostId = "d4b231f1";
-    hostName = "juniper";
-
     networkmanager = {
       enable = true;
     };

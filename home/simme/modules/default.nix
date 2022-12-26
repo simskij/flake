@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./btop
     ./chromium
     ./git
     ./mako

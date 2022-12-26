@@ -1,6 +1,18 @@
 { config, pkgs, lib, ... }:
 
 {
+
+  imports = [
+    ./modules/bluetooth
+    ./modules/boot
+    ./modules/locale
+    ./modules/networking
+    ./modules/pkgs
+    ./modules/steam
+    ./modules/users
+    ./modules/virtualization
+  ];
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -19,29 +31,6 @@
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
     };
-    systemPackages = with pkgs; [
-      autoconf
-      automake
-      dpkg
-      dracula-theme
-      firecracker
-      ignite
-      libxfs
-      git
-      glib
-      gnome3.adwaita-icon-theme
-      go_1_18
-      psmisc
-      python3
-      qemu
-      tailscale
-      ulauncher
-      unzip
-      vim
-      wayland
-      wget
-      xdg-utils
-    ];
   };
 
   services = {
