@@ -1,10 +1,12 @@
-{ config, pkgs, lib, ... }:
-
-{
+{ config, pkgs, lib, secrets, ... }: {
 
   imports = [
+    ./modules/audio
     ./modules/bluetooth
     ./modules/boot
+    ./modules/desktop
+    ./modules/gpg
+    ./modules/kube
     ./modules/locale
     ./modules/networking
     ./modules/pkgs
@@ -27,57 +29,8 @@
     };
   };
 
-  environment = {
-    sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-    };
+  system = {
+    stateVersion = "22.05";
   };
 
-  services = {
-    tailscale.enable = true;
-    openssh.enable = true;
-    dbus.enable = true;
-    k3s = {
-      enable = true;
-      role = "server";
-    };
-    xserver = {
-      layout = "us";
-      xkbVariant = "mac";
-      displayManager = {
-        gdm = {
-          enable = true;
-          wayland = true;
-        };
-      };
-    };
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
-    };
-  };
-
-  xdg = {
-    portal = {
-      enable = true;
-      wlr.enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    };
-  };
-
-  programs = {
-    mtr.enable = true;
-    gnupg = {
-      agent = {
-        enable = true;
-        enableSSHSupport = true;
-      };
-    };
-    sway = {
-      enable = true;
-    };
-  };
-
-  system.stateVersion = "22.05";
 }

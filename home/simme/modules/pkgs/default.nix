@@ -3,6 +3,8 @@
   home = {
     packages = with pkgs; [
       lutris
+      mosh
+      git-crypt
     ]
       ++ (import ./lists/containers.nix pkgs).list
       ++ (import ./lists/desktop.nix pkgs).list
