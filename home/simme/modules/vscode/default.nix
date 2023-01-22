@@ -20,7 +20,7 @@
           name = "catppuccin-vsc";
           publisher = "Catppuccin";
           version = "2.5.0";
-          sha256 = "77s+IXMGJi1ZpNTNZ+ztAYYRqo2CU7xUBCvXq/1f+nk=";
+          sha256 = "+dM6MKIjzPdYoRe1DYJ08A+nHHlkTsm+I6CYmnmSRj4=";
         }
         {
           name = "remote-ssh";

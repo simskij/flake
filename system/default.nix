@@ -3,7 +3,6 @@
   imports = [
     ./modules/audio
     ./modules/bluetooth
-    ./modules/boot
     ./modules/desktop
     ./modules/gpg
     ./modules/kube

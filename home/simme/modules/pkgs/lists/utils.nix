@@ -1,8 +1,11 @@
+
 {pkgs, ...}: {
   list = with pkgs; [
     _1password-gui
     appimage-run
+    bat
     direnv
+    discord
     exa
     gnupg
     k6
@@ -10,7 +13,6 @@
     lynx
     mosh
     mudlet
-    obinskit
     obsidian
     quickemu
     ranger
@@ -18,8 +20,11 @@
     sshuttle
     tmux
     tree
+    ubuntu_font_family
     unrar
     unzip
+    usbutils
+    wlsunset
     zip
   ];
 }

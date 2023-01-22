@@ -29,6 +29,18 @@
       }];
     };
   };
+  home.file = {
+    ".config/sway/lock.sh" = {
+      executable = true;
+      text = ''
+        swayidle \
+            timeout 1 'swaymsg "output * dpms off"' \
+            resume 'swaymsg "output * dpms on"' & 
+        swaylock -c 000000ff --image ~/.wallpaper.png
+        kill %%
+      '';
+    };
+  };
 
   wayland = {
     windowManager = {
@@ -123,7 +135,8 @@
             "${modifier}+a" = "focus parent";
             "${modifier}+Mod1+3" = "exec grim - | wl-copy -t image/png";
             "${modifier}+Mod1+4" = "exec grim -g \"$(slurp -d)\" - | wl-copy -t image/png";
-            "${modifier}+l" = "exec swaylock -f -c 000000ff --image ~/.wallpaper.png";
+            "${modifier}+l" = "exec ~/.config/sway/lock.sh";
+            # "exec ";
             "${modifier}+Shift+e" = ''
               exec swaynag \
                 -t warning \
@@ -135,6 +148,7 @@
         };
         extraConfigEarly = ''
           exec GDK_BACKEND=wayland ulauncher --hide-window
+          exec wlsunset
           default_border none 0
 
           workspace 1  output HDMI-A-1

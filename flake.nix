@@ -14,13 +14,20 @@
     in
     {
       homeConfigurations = {
-        "simme@juniper" = home-manager.lib.homeManagerConfiguration {
+        "simme" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           modules = [ ./home/simme ];
         };
       };
 
       nixosConfigurations = {
+        pine = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./hardware/pine
+            ./system
+          ];
+        };
         juniper = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [

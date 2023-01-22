@@ -5,6 +5,7 @@
       lutris
       mosh
       git-crypt
+      via
     ]
       ++ (import ./lists/containers.nix pkgs).list
       ++ (import ./lists/desktop.nix pkgs).list

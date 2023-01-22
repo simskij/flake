@@ -18,10 +18,19 @@
         "sd_mod"
       ];
     };
+    loader = {
+      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+    };
     kernelModules = [
       "kvm-amd"
+      "vhost_vsock"
     ];
     extraModulePackages = [ ];
+    extraModprobeConfig = "options kvm_amd nested=1";
   };
 
   fileSystems = {
