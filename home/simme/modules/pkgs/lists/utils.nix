@@ -25,6 +25,7 @@
     unzip
     usbutils
     wlsunset
+    xdg-utils
     zip
   ];
 }

@@ -7,7 +7,6 @@
     ./neofetch
     ./nvim
     ./pkgs
-    ./rambox
     ./sway
     ./vscode
     ./zsh

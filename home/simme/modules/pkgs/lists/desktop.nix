@@ -20,5 +20,6 @@
     wdisplays
     wf-recorder
     wl-clipboard
+    ubuntu_font_family
   ];
 }
