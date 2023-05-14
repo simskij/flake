@@ -1,5 +1,10 @@
-# nixos-config
-simskij's NixOS and home-manager configuration.
+<div align="center">
+  <h1>❄️</h1>
+  simskij's NixOS and home-manager configuration.
+</div>
+
+
+
 
 ## Machines
 
