@@ -1,65 +1,7 @@
-{ inputs, lib, config, pkgs, ... }: {
-
-  gtk = {
-    enable = true;
-    font.name = "Victor Mono SemiBold 12";
-    theme = {
-      name = "Catppuccin-Pink-Dark";
-      package = pkgs.catppuccin-gtk;
-    };
-  };
-
-  programs = {
-    waybar = {
-      enable = true;
-      settings = [{
-        height = 40;
-        layer = "top";
-        position = "top";
-        margin = "15 15 0 15";
-        tray = { spacing = 10; };
-        modules-left = [
-          "clock"
-          "sway/mode"
-        ];
-        modules-center = [
-          "sway/workspaces"        
-        ];
-        modules-right = [
-          "pulseaudio"
-          "tray"
-        ];
-        "sway/workspaces" = {
-            "format" = "⬤";
-              "persistent_workspaces" = {
-                "1" = [ "HDMI-A-1" ];
-                "2" = [ "HDMI-A-1" ];
-                "3" = [ "HDMI-A-1" ];
-                "4" = [ "HDMI-A-1" ];
-                "5" = [ "HDMI-A-1" ];
-                "6" =  [ "DP-4" ];
-                "7" =  [ "DP-4" ];
-                "8" =  [ "DP-4" ];
-                "9" =  [ "DP-4" ];
-                "10"= [ "DP-4" ];
-              };
-            };
-      }];
-      style = import ./waybar.style.nix {};
-    };
-  };
-  home.file = {
-    ".config/sway/lock.sh" = {
-      executable = true;
-      text = ''
-        swayidle \
-            timeout 1 'swaymsg "output * dpms off"' \
-            resume 'swaymsg "output * dpms on"' & 
-        swaylock -c 000000ff --image ~/.wallpaper.png
-        kill %%
-      '';
-    };
-  };
+{ config, ... }: {
+  imports = [
+    ./sway.script.nix
+  ];
 
   wayland = {
     windowManager = {

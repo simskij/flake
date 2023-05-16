@@ -1,4 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ...}: {
+  imports = [
+    ./javascript
+    ./golang
+    ./python
+    ./rust
+  ];
+ 
   programs = {
     gh = {
       enable = true;
@@ -25,4 +32,15 @@
       };
     };
   };
+  
+  home.packages = with pkgs; [
+    ctop
+    dive
+    gcc 
+    git
+    gnumake
+    k6
+    skopeo
+    syft
+  ];
 }

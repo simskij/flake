@@ -1,6 +1,4 @@
-{ inputs, pkgs, config, lib, ... }:
-
-{
+{ pkgs, config, ... }: {
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-unwrapped;

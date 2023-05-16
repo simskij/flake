@@ -1,7 +1,9 @@
 { ... }: {
   boot = {
     initrd = {
-      kernelModules = [];
+      kernelModules = [
+        "amdgpu"
+      ];
       availableKernelModules = [
         "nvme"
         "xhci_pci"

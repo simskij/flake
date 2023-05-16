@@ -1,13 +1,28 @@
-{...}: {
-  programs = {
-    btop = {
-      enable = true;
-      settings = {
-        color_theme = "catppuccin";
-      };
-    };
-  };
+{ pkgs, ... }: {
   home = {
+    packages = with pkgs; [
+      bat
+      direnv
+      exa
+      gnupg
+      jq
+      kitty-themes
+      libnotify
+      lynx
+      matterhorn
+      mosh
+      ranger
+      ripgrep
+      spotify-tui
+      sshuttle
+      tmux
+      tree
+      unrar
+      unzip
+      usbutils
+      yq
+      zip
+    ];
     file = {
       ".config/btop/themes/catppuccin.theme" = {
           text = ''
@@ -54,6 +69,58 @@
             theme[process_mid]="#96cdfb"
             theme[process_end]="#89dceb"
           '';
+      };
+    };
+  };
+
+  programs = {
+    kitty = {
+      enable = true;
+      settings = {
+          window_padding_width = 18;
+          include = "./catppuccin.conf";
+      };
+    };
+    btop = {
+      enable = true;
+      settings = {
+        color_theme = "catppuccin";
+      };
+    };
+    starship = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    zsh = {
+      enable = true;
+      dotDir = ".config/zsh";
+
+      enableCompletion = true;
+      enableAutosuggestions = true;
+      enableSyntaxHighlighting = true;
+
+      history = {
+        save = 1000;
+        size = 1000;
+        path = "$HOME/.cache/zsh_history";
+      };
+
+      shellAliases = {
+        auth = "ssh-add ~/.ssh/id_rsa";
+        code = "codium";
+        dust = "dust --si";
+        jj = "juju";
+        k = "kubectl";
+        ll = "ls -la";
+        ls = "exa";
+        nano = "nvim";
+        reload = "source ~/.zshrc";
+        speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -";
+        vi = "nvim";
+        vim = "nvim";
+        whatsmyip = "curl ifconfig.co";
+        "reload.nixos" = "sudo nixos-rebuild switch --flake /home/simme/code/simskij/nixos-config";
+        "reload.home" = "home-manager switch --flake /home/simme/code/simskij/nixos-config";
       };
     };
   };

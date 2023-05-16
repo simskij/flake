@@ -1,7 +1,7 @@
 {
   description = "@simskij's NixOS Configuration Flake";
   inputs = {
-    nixpkgs.url = "nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     
     disko = {
@@ -11,29 +11,52 @@
     
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
-  outputs =
-    { self
-    , disko
-    , nixpkgs
-    , nixpkgs-unstable
-    , home-manager
-    , ...
-    } @ inputs:
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    home-manager,
+    ...
+  } @ inputs:
     let
       inherit (self) outputs;
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
       stateVersion = "22.11";
-      system = "x86_64-linux";
     in
     {
       overlays = import ./overlays { inherit inputs; };
+      
+      # devShells = forAllSystems (system:
+      #   let pkgs = nixpkgs-unstable.legacyPackages.${system};
+      #   in pkgs.mkShell {
+      #     NIX_CONFIG = "experimental-features = nix-command flakes";
+      #     nativeBuildInputs = with pkgs; [ nix home-manager git ];
+      #   }
+      # );
+
+      formatter = forAllSystems (system:
+        let pkgs = nixpkgs-unstable.legacyPackages.${system};
+        in pkgs.nixpkgs-fmt
+      );
 
       homeConfigurations = {
-        "simme" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        "simme@juniper" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs-unstable.legacyPackages.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs outputs stateVersion;
+            hostname = "juniper";
+            username = "simme";
+          };
           modules = [ ./home/simme ];
         };
       };
@@ -49,14 +72,16 @@
           modules = [ ./host ];
         };
 
-        juniper = nixpkgs.lib.nixosSystem {
+        juniper = nixpkgs-unstable.lib.nixosSystem {
           specialArgs = {
             inherit inputs outputs stateVersion;
             hostname = "juniper";
             hostid = "d4b231f1";
             username = "simme";
           };
-          modules = [ ./host ];
+          modules = [
+            ./host
+          ];
         };
       };
     };

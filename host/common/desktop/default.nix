@@ -1,7 +1,6 @@
-{ config, pkgs, lib, ... }: {
- 
+{ pkgs, ... }: { 
   environment = {
-    sessionVariables = {
+    variables = {
       NIXOS_OZONE_WL = "1";
     };
   };
@@ -13,7 +12,9 @@
   };
 
   services = {
-    dbus.enable = true;
+    dbus = {
+      enable = true;
+    };
     xserver = {
       layout = "us";
       xkbVariant = "mac";
@@ -23,6 +24,9 @@
           wayland = true;
         };
       };
+    };
+    gnome = {
+      at-spi2-core.enable = true;
     };
   };
 

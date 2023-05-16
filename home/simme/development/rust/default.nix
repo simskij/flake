@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ...}: {
   home.packages = with pkgs; [
-    killall
+    rustup
   ];
 }

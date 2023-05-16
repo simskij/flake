@@ -12,7 +12,6 @@
     ./bluetooth
     ./desktop
     ./gpg
-    ./kube
     ./networking
     ./steam
     ./users/${username}
@@ -75,6 +74,21 @@
       LC_PAPER = "sv_SE.utf8";
       LC_TELEPHONE = "sv_SE.utf8";
       LC_TIME = "sv_SE.utf8";
+    };
+  };
+
+  services = {
+    greetd = {
+      enable = true;
+      restart = false;
+      settings = {
+        default_session = {
+          command = ''
+            ${lib.makeBinPath [pkgs.greetd.tuigreet]}/tuigreet -r --asterisks --time \
+                --cmd /home/simme/.nix-profile/bin/sway 
+          '';
+        };
+      };
     };
   };
 }

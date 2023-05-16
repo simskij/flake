@@ -1,6 +1,5 @@
 {
   inputs,
-  pkgs,
   ...
 }: {
 
@@ -18,6 +17,6 @@
 
   hardware = {
     cpu.amd.updateMicrocode = true;
-    video.hidpi.enable = true;
+    opengl.enable = true;
   };
 }

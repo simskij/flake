@@ -1,13 +1,11 @@
 {
   config,
-  desktop,
   hostname,
   inputs,
   lib, 
   modulesPath,
   outputs,
   stateVersion,
-  username,
   ...
 }: {
   imports = [
@@ -29,6 +27,12 @@
     config = {
       allowUnfree = true;
     };
+  };
+
+  services = {
+    #vscode-server = {
+    #  enable = true;
+    #};
   };
 
   nix = {
