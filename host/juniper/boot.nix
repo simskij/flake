@@ -1,5 +1,6 @@
-{ ... }: {
+{ pkgs, ... }: {
   boot = {
+    kernelPackages = pkgs.linuxPackages_6_2;
     initrd = {
       kernelModules = [
         "amdgpu"
@@ -23,5 +24,15 @@
     ];
     extraModulePackages = [ ];
     extraModprobeConfig = "options kvm_amd nested=1";
+  };
+
+  programs = {
+    corectrl = {
+      enable = true;
+      gpuOverclock = {
+        enable = true;
+        ppfeaturemask = "0xffffffff";
+      };
+    };
   };
 }

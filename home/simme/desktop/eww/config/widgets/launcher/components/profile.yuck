@@ -1,0 +1,13 @@
+(defpoll username :interval "1h" "bash -c whoami")
+(defpoll hostname :interval "1h" "bash -c hostname")
+
+(defwidget profile []
+  (box 
+    :orientation "v"
+    :space-evenly false
+    :class "profile"
+    
+    (image :path "./images/avatar.png" :image-width 160)
+    (label :class "who-where" :text "${username}@${hostname}")
+  )
+)

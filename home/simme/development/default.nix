@@ -42,5 +42,8 @@
     k6
     skopeo
     syft
+    charmcraft
+    juju
+    rockcraft
   ];
 }

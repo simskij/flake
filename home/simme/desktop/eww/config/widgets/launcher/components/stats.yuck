@@ -1,0 +1,69 @@
+(defpoll uptime :interval "1m" `./scripts/uptime`)
+(defpoll cpu :initial 10 :interval "1m" `./scripts/get-cpu`)
+(defpoll mem :initial 10 :interval "1m" `./scripts/get-mem`)
+
+(defwidget stats []
+  (box
+      :orientation "v"
+      :space-evenly false
+    (box
+      :orientation "v"
+      :space-evenly false
+      :style "background: #24273a; margin: 4px 0; border-radius: 8px; padding: 16px 24px;box-shadow: 0 0 4px rgba(0,0,0,0.5);"
+      
+      (box
+        :style "margin: 8px; font-size: 16px;"
+        :space-evenly false
+      
+        (label :text "" :style "padding: 0px;margin-right: 24px;color: #89b4fa;")
+        (label :text uptime :halign "end" :hexpand true)
+      )
+    )
+    (box
+      :orientation "v"
+      :space-evenly false
+      :style "background: #24273a; margin: 4px 0; border-radius: 8px; padding: 16px 24px;box-shadow: 0 0 4px rgba(0,0,0,0.5);"
+      
+      (box
+        :class "stat"
+        :style "margin: 8px; font-size: 16px;"
+        :space-evenly false
+        
+        (label :text "" :style "padding: 0px;margin-right: 24px;color: #89b4fa;")
+        (scale
+          :value       {mem}
+          :min         0
+          :max         100
+          :flipped     true
+          :orientation "h"
+          :class       "mem" 
+          :draw-value  false
+          :width       80
+          :height      10
+          :active      false
+        )
+        (label :text "${mem}%" :halign "end" :style "margin-left: 16px")
+      )
+      (box
+        :class "stat"
+        :style "margin: 8px; font-size: 16px;"
+        :space-evenly false
+        
+        (label :text "󰊚" :style "padding: 0px;margin-right: 24px;color: #89b4fa;")
+        (scale
+          :value       {cpu}
+          :min         0
+          :max         100
+          :flipped     true
+          :orientation "h"
+          :class       "mem" 
+          :draw-value  false
+          :width       80
+          :height      10
+          :active      false
+        )
+        (label :text "${cpu}%" :halign "end" :style "margin-left: 16px")
+      )
+    )
+  )
+)

@@ -1,0 +1,19 @@
+
+(defpoll clock_hour :interval "1m" "date +\%H")
+(defpoll clock_minute :interval "10s" "date +\%M")
+(defpoll clock_second :interval "1s" "date +\%S")
+(defwidget clock []
+        (box
+        :class "clock"
+        :valign "end"
+        :height 60
+        :hexpand false
+        :vexpand false
+        :orientation "v"
+        :space-evenly false
+        (label :text clock_hour :class "hours")
+        (label :text clock_minute :class "minutes")
+        (label :text clock_second :class "seconds")
+      )
+)
+

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+free | grep Mem | awk '{ mem = $3/$2 * 100.0 }; END { print substr(mem, 1, 2)}'

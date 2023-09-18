@@ -11,21 +11,35 @@
       ".config/neofetch/config.conf" = {
         text = ''
           print_info() {
-            info "$(color 2)  " kernel
-            info "$(color 2)  " distro
-            info "$(color 2)  " shell
-            info "$(color 2)  " term
-            info "$(color 2)  " wm
             prin
-            info "$(color 3)  " uptime
+
+            info "" distro
+            prin
+            info "⦠ $(color 3)   " kernel
+            info "⦠ $(color 3)   " shell
+            info "⦠ $(color 3)   " term
+            info "⦠ $(color 3)   " de
+            info "⦠ $(color 3)   " uptime
+
+            prin
+
+            info "" model
+
+            prin 
+            info "⦠ $(color 2)   " cpu
+            info "⦠ $(color 2) 󰍛  " memory
+            info "⦠ $(color 2)   " gpu
+            info "⦠ $(color 2)   " resolution
+
           }
-          distro_shorthand="tiny"
           os_arch="off"
           uptime_shorthand="tiny"
+          separator="  "
           ascii=""
+          kernel_shorthand="off"
           ascii_distro="nixos_small"
           image_backend="kitty"
-          image_size="180px"
+          image_size="290px"
           image_source="/home/simme/.distro.png"
         '';
       };

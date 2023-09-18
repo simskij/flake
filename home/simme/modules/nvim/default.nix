@@ -35,12 +35,27 @@
         map('n', '<leader>fb',       ':Telescope buffers<CR>'   )
         map('n', '<leader>fh',       ':Telescope help_tags<CR>' )
         
+        
         EOF
     '';
 
 
     plugins = with pkgs.vimPlugins; [
       plenary-nvim
+      {
+        plugin = mason-lspconfig-nvim;
+        type = "lua";
+        config = ''
+          require("mason").setup()
+          require("mason-lspconfig").setup({
+            ensure_installed = {
+              "pyright",
+              "ruff_lsp",
+              "pylsp",
+            },
+          })
+        '';
+      }
       nvim-web-devicons
       nvim-tree-lua
       nvim-treesitter
@@ -52,24 +67,33 @@
         plugin = toggleterm-nvim;
         type = "lua";
         config = ''
-            require('toggleterm').setup()
+            require('toggleterm').setup({
+              shade_terminals = false,
+            })
         '';
       }
       {
         plugin = nvim-tree-lua;
         type = "lua";
         config = ''
-            require('nvim-tree').setup({ update_cwd = true })
+            require('nvim-tree').setup({
+              update_cwd = true
+            })
         '';
       }
       {
         plugin = catppuccin-nvim;
         type = "lua";
         config = ''
-            require('catppuccin').setup {
+            require('catppuccin').setup({
                 flavour = 'mocha',
-            }
-            vim.api.nvim_command 'colorscheme catppuccin'
+                integrations = {
+                    nvimtree = true,
+                    telescope = true,
+                }
+            })
+
+            vim.cmd.colorscheme "catppuccin"
         '';
       }
     ];

@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   home = {
     packages = with pkgs; [
+      _1password
       bat
       direnv
       exa
@@ -78,6 +79,7 @@
       enable = true;
       settings = {
           window_padding_width = 18;
+          font_family = "FiraMono Nerd Font";
           include = "./catppuccin.conf";
       };
     };

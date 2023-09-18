@@ -27,7 +27,7 @@ window#waybar.hidden {
     transition: none;
     color: #6c7086;
     background: transparent;
-    padding: 5px;
+    padding: 4px 16px;
 }
 
 #workspaces button.persistent {
@@ -43,7 +43,7 @@ window#waybar.hidden {
     background: #9399b2;
 }
 
-#workspaces button.focused {
+#workspaces button.active {
     color: #89b4fa;
 }
 

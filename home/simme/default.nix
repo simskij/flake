@@ -1,12 +1,14 @@
 {
   config,
   pkgs,
+  inputs,
   outputs,
   stateVersion,
   username,
   ...
 }: {
   imports = [
+    inputs.hyprland.homeManagerModules.default
     ./browser
     ./desktop
     ./development
@@ -24,6 +26,9 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
+      inputs.hyprland.overlays.default
+      inputs.hyprland-contrib.overlays.default
+      inputs.crafts.overlay 
       (_self: _super: {
         fcitx-engines = pkgs.fcitx5;
       })
@@ -36,5 +41,10 @@
       ];
     };
   };
-
+  home.packages = with pkgs; [
+    wlprop
+    bc
+    hyprprop
+    obs-studio
+  ];
 }

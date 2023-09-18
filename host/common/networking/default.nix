@@ -13,6 +13,7 @@
       allowedTCPPorts = [
         22
         6443
+        8443
       ];
       trustedInterfaces = [
         "tailscale0"

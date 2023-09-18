@@ -1,7 +1,11 @@
-{ ... }: {
+{ pkgs, ... }: {
   programs = {
     waybar = {
+      package = pkgs.waybar-hyprland;
       enable = true;
+      systemd = {
+        enable = false;
+      };
       settings = [{
         height = 40;
         layer = "top";
@@ -10,16 +14,15 @@
         tray = { spacing = 10; };
         modules-left = [
           "clock"
-          "sway/mode"
         ];
         modules-center = [
-          "sway/workspaces"        
+          "wlr/workspaces"        
         ];
         modules-right = [
           "pulseaudio"
           "tray"
         ];
-        "sway/workspaces" = {
+        "wlr/workspaces" = {
           "format" = "⬤";
           "persistent_workspaces" = {
             "1" = [ "HDMI-A-1" ];

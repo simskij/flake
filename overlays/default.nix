@@ -2,7 +2,8 @@
   inputs,
   ...
 }: {
-  additions = _final: _prev: { };
+  additions = final: _prev: import ../pkgs { pkgs = final; };
+
   modifications = _final: _prev: { };
 
   unstable-packages = final: _prev: {
