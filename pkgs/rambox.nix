@@ -6,7 +6,7 @@ let
   name = "${pname}-${version}";
   src = fetchurl {
       url = "https://rambox.app/api/download?os=linux&package=AppImage";
-      hash = "sha256-wvjCr1U+/1/GtebMNWJjizzegqZ+wWXUrmOshYtMq6o=";
+      hash = "sha256-ZKFlfflpgY2HvOCnMNrgNx1zlgO9reJLXVpPatRgyus=";
   };
   appImageContents = appimageTools.extractType2 {
     inherit name src;

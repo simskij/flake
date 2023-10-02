@@ -2,6 +2,10 @@
   networking = {
     networkmanager = {
       enable = true;
+      unmanaged = [
+        "tailscale0"
+        "lxdbr0"
+      ];
     };
 
     firewall = {
@@ -17,6 +21,7 @@
       ];
       trustedInterfaces = [
         "tailscale0"
+        "lxdbr0"
       ];
     };
   };

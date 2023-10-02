@@ -4,7 +4,7 @@
       _1password
       bat
       direnv
-      exa
+      eza
       gnupg
       jq
       kitty-themes
@@ -99,7 +99,9 @@
 
       enableCompletion = true;
       enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting = {
+          enable = true;
+      };
 
       history = {
         save = 1000;
@@ -114,7 +116,7 @@
         jj = "juju";
         k = "kubectl";
         ll = "ls -la";
-        ls = "exa";
+        ls = "eza";
         nano = "nvim";
         reload = "source ~/.zshrc";
         speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -";

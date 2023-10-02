@@ -29,7 +29,7 @@
     binutils
     curl
     dig
-    exa
+    eza
     file
     git
     home-manager

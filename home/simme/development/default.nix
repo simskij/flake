@@ -9,7 +9,9 @@
   programs = {
     gh = {
       enable = true;
-      enableGitCredentialHelper = true;
+      gitCredentialHelper = {
+          enable = true;
+      };
       extensions = [
         pkgs.gh-dash
       ];
@@ -40,6 +42,7 @@
     git
     gnumake
     k6
+    kubectl
     skopeo
     syft
     charmcraft

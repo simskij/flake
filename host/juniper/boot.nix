@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   boot = {
-    kernelPackages = pkgs.linuxPackages_6_2;
+    kernelPackages = pkgs.linuxPackages_latest;
     initrd = {
       kernelModules = [
         "amdgpu"
@@ -24,6 +24,12 @@
     ];
     extraModulePackages = [ ];
     extraModprobeConfig = "options kvm_amd nested=1";
+  };
+
+  systemd.services.NetworkManager-wait-online = {
+    serviceConfig = {
+      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+    };
   };
 
   programs = {

@@ -1,5 +1,5 @@
 {...}: {
-  programs = {
+  services = {
     mako = {
       enable = true;
       textColor = "#cdd6f4";

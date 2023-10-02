@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   programs = {
     waybar = {
-      package = pkgs.waybar-hyprland;
       enable = true;
       systemd = {
         enable = false;

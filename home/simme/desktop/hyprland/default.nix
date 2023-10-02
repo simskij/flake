@@ -15,7 +15,6 @@
         package = pkgs.hyprland-hidpi;
         xwayland = {
           enable = true;
-          hidpi = true;
         };
         extraConfig = ''
 
