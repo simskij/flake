@@ -27,6 +27,16 @@ _ : let on = { enable = true; }; in
       steam       = on;
       tailscale   = on;
       zip         = on;
+      chromium    = on // {
+        extensions = [
+          "gcbommkclmclpchllfjekcdonpmejbdp" # https everywhere
+          "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
+          "ldgfbffkinooeloadekpmfoklnobpien" # raindrop
+          "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
+          "kbfnbcaeplbcioakkpcpgfkobkghlhen" # grammarly 
+          "aeblfdkhhhdcdjpifhhbdiojplfjncoa" # 1password
+        ];
+      };
     };
     
     network = {

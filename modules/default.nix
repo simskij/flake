@@ -8,6 +8,7 @@
 {
   imports = [
     ./apps/1password
+    ./apps/chromium
     ./apps/gpg
     ./apps/lxd
     ./apps/steam

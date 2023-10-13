@@ -9,7 +9,6 @@
 }: {
   imports = [
     inputs.hyprland.homeManagerModules.default
-    ./browser
     ./desktop
     ./development
     ./modules
