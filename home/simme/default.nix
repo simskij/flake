@@ -16,35 +16,19 @@
     ./shell
   ];
 
+  nixpkgs.config.allowUnfree = true; 
+
   home = {
     username = username;
     homeDirectory = "/home/${username}";
     stateVersion = stateVersion;
   };
 
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      inputs.hyprland.overlays.default
-      inputs.hyprland-contrib.overlays.default
-      inputs.crafts.overlay 
-      (_self: _super: {
-        fcitx-engines = pkgs.fcitx5;
-      })
-    ];
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = (_: true);
-      permittedInsecurePackages = [
-        "electron-13.6.9"
-      ];
-    };
-  };
   home.packages = with pkgs; [
     wlprop
     bc
-    hyprprop
+    spotify
     obs-studio
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 }

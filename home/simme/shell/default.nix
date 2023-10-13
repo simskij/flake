@@ -73,13 +73,12 @@
       };
     };
   };
-
   programs = {
     kitty = {
       enable = true;
       settings = {
           window_padding_width = 18;
-          font_family = "FiraMono Nerd Font";
+          font_family = "FiraCode Nerd Font";
           include = "./catppuccin.conf";
       };
     };

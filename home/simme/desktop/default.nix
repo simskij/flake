@@ -1,7 +1,6 @@
-{ pkgs, spicetify-nix, lib, config, ... }:
+{ pkgs, lib, config, ... }:
 
-let spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
-in {
+{
 
   imports = [
     ./sway
@@ -9,7 +8,6 @@ in {
     ./hyprland
     ./waybar
     ./mako 
-    spicetify-nix.homeManagerModule
   ];
 
   qt = {
@@ -44,7 +42,6 @@ in {
     packages = with pkgs; [
       (catppuccin-kvantum.override { variant = "Macchiato"; accent = "Blue"; })
       libsForQt5.qtstyleplugin-kvantum
-      fira-mono-nerd
       appimage-run
       blueberry
       cinnamon.nemo
@@ -55,8 +52,6 @@ in {
       mattermost-desktop
       mudlet
       obsidian
-      pavucontrol
-      playerctl
       rambox
       slurp
       swayidle
@@ -82,18 +77,6 @@ in {
     };
   };
 
-  programs = {
-    spicetify = {
-      enable = true;
-      theme = spicePkgs.themes.catppuccin-macchiato;
-      colorScheme = "flamingo";
-      enabledExtensions = with spicePkgs.extensions; [
-        fullAppDisplay
-        shuffle
-        hidePodcasts
-      ];
-    };
-  };
 
   xdg = {
     enable = true;

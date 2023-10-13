@@ -3,7 +3,7 @@
     waybar = {
       enable = true;
       systemd = {
-        enable = false;
+        enable = true;
       };
       settings = [{
         height = 40;

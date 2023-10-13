@@ -1,4 +1,4 @@
-{ pkgs, ...}: {
+{ inputs, pkgs, ...}: {
   imports = [
     ./javascript
     ./golang
@@ -45,8 +45,5 @@
     kubectl
     skopeo
     syft
-    charmcraft
-    juju
-    rockcraft
   ];
 }

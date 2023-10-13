@@ -7,7 +7,7 @@
     windowManager = {
       sway = {
         enable = true;
-        systemdIntegration = true;
+        systemd.enable = true;
         wrapperFeatures = { gtk = true; };
         config = {
           menu = "ulauncher-toggle";

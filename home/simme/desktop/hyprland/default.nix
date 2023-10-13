@@ -12,7 +12,6 @@
       hyprland = {
         enable = true;
         recommendedEnvironment = true;
-        package = pkgs.hyprland-hidpi;
         xwayland = {
           enable = true;
         };
@@ -100,7 +99,6 @@
 
           decoration {
             rounding = 8
-            blur = false
             drop_shadow = false
           }
 
