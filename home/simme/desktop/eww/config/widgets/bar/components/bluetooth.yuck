@@ -1,5 +1,0 @@
-(defwidget bluetooth []
-   (button :valign "end" :style "padding: 8px 0 16px 0;font-size:24px;color:#74c7ec;" :onclick "blueberry &"
-     (label :text "" :valign "end")
-   )
-)

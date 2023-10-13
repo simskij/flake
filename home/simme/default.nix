@@ -24,10 +24,8 @@
   };
 
   home.packages = with pkgs; [
-    wlprop
     bc
     spotify
     obs-studio
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 }

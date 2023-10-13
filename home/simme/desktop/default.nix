@@ -3,8 +3,6 @@
 {
 
   imports = [
-    ./sway
-    ./eww
     ./hyprland
     ./waybar
     ./mako 

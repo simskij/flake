@@ -15,6 +15,7 @@
     ./apps/tailscale
     ./apps/netutils
     ./apps/zip
+    ./apps/zsh
     ./base
     ./desktop
     ./network

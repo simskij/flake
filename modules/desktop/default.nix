@@ -52,6 +52,11 @@ in
       systemPackages = with pkgs; [
         polkit_gnome
         wayland
+        wdisplays
+        wl-clipboard
+        wl-gammactl
+        wlprop
+        wlr-randr
       ];
     };
 

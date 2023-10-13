@@ -15,7 +15,6 @@ in
         environment.systemPackages = with pkgs; [
             curl
             dig
-            sshuttle
             ngrok
             traceroute
             wget

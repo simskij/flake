@@ -1,6 +1,7 @@
 {
     config,
     lib,
+    pkgs,
     username,
     hostid,
     hostname,
@@ -17,6 +18,10 @@ in
                 ssh = {
                     enable = mkEnableOption "";
                     keys = mkOption { type = types.listOf types.str; default = []; };
+                    addons = {
+                      sshuttle.enable = mkEnableOption "";
+                      mosh.enable = mkEnableOption "";
+                    };
                 };
                 dns = mkOption { type = types.listOf types.str; default = [ "1.1.1.1" ]; };
                 firewall = {
@@ -60,6 +65,11 @@ in
                   PermitRootLogin = "no";
                 };
             };
+        };
+        environment = {
+          systemPackages = with pkgs; []
+            ++ (if cfg.ssh.addons.mosh.enable then [ mosh ] else [])
+            ++ (if cfg.ssh.addons.sshuttle.enable then [ sshuttle ] else []);
         };
         users = {
             users = {

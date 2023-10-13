@@ -58,7 +58,6 @@
           bind = $mod CTRL, RIGHT, exec, playerctl --player spotify,mpd next
           bind = $mod CTRL, UP, exec, playerctl volume 0.1+
           bind = $mod CTRL, DOWN, exec, playerctl volume 0.1-
-          bind = $mod, ESCAPE, exec, eww open launcher --toggle
 
           bind = $mod SHIFT, left, movewindow, l
           bind = $mod SHIFT, right, movewindow, r
@@ -119,7 +118,6 @@
           windowrulev2 = workspace special silent, title:^(.*is sharing (your screen|a window)\.)$
 
           exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-          exec=~/.config/hypr/launch-eww.sh
         '';
       };
     };
@@ -134,18 +132,6 @@
       '';
     };
 
-    ".config/hypr/launch-eww.sh" = {
-      executable = true;
-      text = ''
-        #!/usr/bin/env bash
-        
-        pkill eww -9
-
-        eww daemon
-
-        eww open bar
-      '';
-    };
     ".config/hypr/lock.sh" = {
       executable = true;
       text = ''
@@ -155,9 +141,6 @@
       
       swaylock -c 000000ff --image ~/.wallpaper.png
       killall swayidle -9 
-
-      ~/.config/hypr/launch-eww.sh
-      
       '';
     };
   };
