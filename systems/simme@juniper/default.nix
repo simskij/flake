@@ -1,4 +1,4 @@
-_ : let on = { enable = true; }; in
+{ pkgs, ... } : let on = { enable = true; }; in
 {
   arctic = { 
     settings = {
@@ -17,9 +17,14 @@ _ : let on = { enable = true; }; in
         layout = "us";
         variant = "mac";
       };
+      addons = {
+        waybar    = on;
+        mako      = on;
+      };
     };
 
     apps = {
+      fileutils   = on;
       gpg         = on;
       lxd         = on;
       netutils    = on;
@@ -51,6 +56,12 @@ _ : let on = { enable = true; }; in
           "kbfnbcaeplbcioakkpcpgfkobkghlhen" # grammarly 
           "aeblfdkhhhdcdjpifhhbdiojplfjncoa" # 1password
         ];
+      };
+      kitty = on // {
+        font = "FiraCode Nerd Font";
+        shell = pkgs.zsh;
+        theme = "Catppuccin-Mocha";
+        padding = 18;
       };
       zsh = on // {
         dots = ".config/zsh";

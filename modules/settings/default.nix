@@ -36,6 +36,24 @@ in
       rtkit.enable = true;
     };
 
+    home-manager = {
+      users = {
+        "${username}" = {
+          systemd.user.services.polkit-gnome-authentication-agent-1 = {
+            Unit.Description = "polkit-gnome-authentication-agent-1";
+            Install.WantedBy = [ "graphical-session.target" ];
+            Service = {
+              Type = "simple";
+              ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+              Restart = "on-failure";
+              RestartSec = 1;
+              TimeoutStopSec = 10;
+            };
+          };
+        };
+      };
+    };
+
     i18n = {
       defaultLocale = "en_US.utf8";
       extraLocaleSettings = {

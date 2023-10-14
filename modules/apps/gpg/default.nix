@@ -18,7 +18,6 @@ in
       gnupg = {
         agent = {
           enable = true;
-          enableSSHSupport = config.arctic.network.ssh.enable;
         };
       };
     };

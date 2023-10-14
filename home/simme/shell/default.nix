@@ -1,21 +1,13 @@
 { pkgs, ... }: {
   home = {
     packages = with pkgs; [
-      bat
       direnv
-      eza
-      jq
-      kitty-themes
       libnotify
       lynx
       matterhorn
-      ranger
-      ripgrep
       spotify-tui
       tmux
-      tree
       usbutils
-      yq
     ];
     file = {
       ".config/btop/themes/catppuccin.theme" = {
@@ -67,36 +59,10 @@
     };
   };
   programs = {
-    kitty = {
-      enable = true;
-      settings = {
-          window_padding_width = 18;
-          font_family = "FiraCode Nerd Font";
-          include = "./catppuccin.conf";
-      };
-    };
     btop = {
       enable = true;
       settings = {
         color_theme = "catppuccin";
-      };
-    };
-    starship = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-    zsh = {
-      shellAliases = {
-        code = "codium";
-        dust = "dust --si";
-        jj = "juju";
-        k = "kubectl";
-        ls = "eza";
-        nano = "nvim";
-        speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -";
-        vi = "nvim";
-        vim = "nvim";
-        whatsmyip = "curl ifconfig.co";
       };
     };
   };

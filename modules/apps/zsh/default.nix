@@ -22,6 +22,11 @@ in
   };
 
   config = {
+    programs = {
+      zsh = {
+        enable = cfg.enable;
+      };
+    };
     home-manager = {
       users = {
         "${username}" = {
