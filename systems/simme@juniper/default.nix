@@ -27,6 +27,21 @@ _ : let on = { enable = true; }; in
       steam       = on;
       tailscale   = on;
       zip         = on;
+      nvim = on // {
+        settings = {
+          tab-width = 2;
+          numbers = true;
+        };
+        plugins = {
+          devicons = on;
+          easy-align = on;
+          gitgutter = on;
+          mason = on;
+          telescope = on;
+          terminal = on;
+          tree = on;
+        };
+      };
       chromium    = on // {
         extensions = [
           "gcbommkclmclpchllfjekcdonpmejbdp" # https everywhere

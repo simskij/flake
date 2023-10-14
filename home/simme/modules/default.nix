@@ -1,7 +1,5 @@
 {...}: {
   imports = [
     ./neofetch
-    ./nvim
-    ./vscode
   ];
 }

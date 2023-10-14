@@ -1,5 +1,5 @@
-{ hostname, ... } : {
+{ username, hostname, ... } : {
   imports = [
-    (./. + "/${hostname}")
+    (./. + "/${username}@${hostname}")
   ];
 }

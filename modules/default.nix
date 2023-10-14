@@ -11,6 +11,7 @@
     ./apps/chromium
     ./apps/gpg
     ./apps/lxd
+    ./apps/nvim
     ./apps/steam
     ./apps/tailscale
     ./apps/netutils
