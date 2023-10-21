@@ -1,5 +1,6 @@
 {
     config,
+    system,
     lib,
     pkgs,
     ...
@@ -11,8 +12,7 @@ in
 {
     options = {
         arctic.apps.tailscale.enable = mkEnableOption "";
-    };
-
+    }; 
     config = mkIf cfg.enable {
         environment = {
             systemPackages = with pkgs; [
