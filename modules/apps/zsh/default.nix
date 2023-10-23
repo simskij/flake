@@ -11,9 +11,11 @@ in
   with lib;
 {
   options.arctic.apps.zsh = {
-    enable = mkEnableOption "";
-    dots = mkOption { type = types.str; default = ".config/zsh"; };
-    aliases = mkOption { type = types.attrs; default = {};};
+    enable  = mkEnableOption "";
+    dots    = mkOption { type = types.str;   default = ".config/zsh"; };
+    aliases = mkOption { type = types.attrs; default = {};            };
+    init    = mkOption { type = types.str;   default = "";            };
+    
     addons = {
       starship = {
         enable = mkEnableOption "";

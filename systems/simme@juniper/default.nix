@@ -12,6 +12,12 @@
       ];
     };
     
+    home-manager = {
+      extraSpecialArgs = {
+        inherit inputs outputs stateVersion username;
+      };
+    };
+    
     desktop = on // {
       keyboard = {
         layout = "us";
@@ -99,5 +105,85 @@
         "1.1.1.1"
       ];
     };
+    packages = with pkgs;
+    [
+      jetbrains.goland
+      jetbrains.pycharm-professional
+      jetbrains.webstorm
+    ] ++
+    [
+      (catppuccin-kvantum.override {
+        variant = "Macchiato";
+        accent = "Blue";
+      })
+      appimage-run
+      blueberry
+      cinnamon.nemo
+      ctop
+      discord
+      dive
+      flameshot
+      gcc 
+      git
+      gnumake
+      go
+      grim
+      k6
+      kubectl
+      libsForQt5.qtstyleplugin-kvantum
+      lutris
+      mattermost-desktop
+      mudlet
+      nodejs
+      obsidian
+      rambox
+      rustup
+      skopeo
+      slurp
+      spotify
+      swayidle
+      swaylock
+      syft
+      tdesktop
+      ubuntu_font_family
+      udev
+      v4l-utils
+      via
+      wdisplays
+      wf-recorder
+      wl-clipboard
+      wlsunset
+      xdg-utils
+    ];
   };
+
+  programs = {
+    gh = {
+      enable = true;
+      gitCredentialHelper = {
+          enable = true;
+      };
+      extensions = [
+        pkgs.gh-dash
+      ];
+    };
+    git = {
+      enable = true;
+      userName = "Simon Aronsson";
+      userEmail = "simme@arcticbit.se";
+      signing = {
+        key = "19220CB4C0D65027";
+        signByDefault = true;
+      };
+      lfs = {
+        enable = true;
+      };
+      extraConfig = {
+        init = {
+          defaultBranch = "main";
+        };
+      };
+    };
+  };
+
 }

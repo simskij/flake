@@ -11,7 +11,9 @@
     ./apps
     ./base
     ./desktop
+    ./homebrew
     ./network
+    ./packages
     ./settings
   ];
 
@@ -46,40 +48,6 @@
         home = {
           username = username;
           homeDirectory = "/home/${username}";
-
-          packages = with pkgs; [
-            (catppuccin-kvantum.override {
-              variant = "Macchiato";
-              accent = "Blue";
-            })
-            
-            libsForQt5.qtstyleplugin-kvantum
-            appimage-run
-            blueberry
-            cinnamon.nemo
-            discord
-            flameshot
-            grim
-            lutris
-            mattermost-desktop
-            mudlet
-            obsidian
-            rambox
-            slurp
-            spotify
-            swayidle
-            swaylock
-            tdesktop
-            ubuntu_font_family
-            udev
-            v4l-utils
-            via
-            wdisplays
-            wf-recorder
-            wl-clipboard
-            wlsunset
-            xdg-utils
-          ];
 
           sessionVariables = {
             _JAVA_AWT_WM_NONREPARENTING = "1";

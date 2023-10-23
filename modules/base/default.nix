@@ -1,8 +1,12 @@
 {
   stateVersion,
   hostname,
+  config,
+  pkgs,
+  lib,
   ...
 }:
+  with lib;
 {
 
   nix = {
@@ -13,6 +17,7 @@
       ];
     };
   };
-
-  system.stateVersion = stateVersion;
+  system = {
+    stateVersion = mkIf (!hasSuffix "-darwin" config.nixpkgs.hostPlatform.system) stateVersion;
+  };
 }

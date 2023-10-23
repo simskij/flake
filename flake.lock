@@ -96,38 +96,6 @@
         "type": "github"
       }
     },
-    "homebrew-cask": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1697902219,
-        "narHash": "sha256-Gu0/Wmrn2YTagpNEr+8CyR+qoI/Y5seLx78irrHthDc=",
-        "owner": "homebrew",
-        "repo": "homebrew-cask",
-        "rev": "bd10eca287e00ef64c3ab5d94715d4acbe03421f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "homebrew",
-        "repo": "homebrew-cask",
-        "type": "github"
-      }
-    },
-    "homebrew-core": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1697902875,
-        "narHash": "sha256-cJjv0GSpOF25yX9C+Kntlzj4EFHQ3Nj9lxozqMwWpkU=",
-        "owner": "homebrew",
-        "repo": "homebrew-core",
-        "rev": "aa53d9b2cc76efe08c6bd6b293729db420855e7b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "homebrew",
-        "repo": "homebrew-core",
-        "type": "github"
-      }
-    },
     "hyprland": {
       "inputs": {
         "hyprland-protocols": "hyprland-protocols",
@@ -363,8 +331,6 @@
         "crafts": "crafts",
         "disko": "disko",
         "home-manager": "home-manager",
-        "homebrew-cask": "homebrew-cask",
-        "homebrew-core": "homebrew-core",
         "hyprland": "hyprland",
         "hyprland-contrib": "hyprland-contrib",
         "nix-darwin": "nix-darwin",

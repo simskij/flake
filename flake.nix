@@ -1,8 +1,9 @@
 {
   description = "@simskij's NixOS Configuration Flake";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs.url          = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    
     nix-darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -11,16 +12,6 @@
       url = "github:zhaofengli-wip/nix-homebrew";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -49,8 +40,6 @@
     nixpkgs-unstable,
     nix-darwin,
     nix-homebrew,
-    homebrew-cask,
-    homebrew-core,
     home-manager,
     ...
   } @ inputs:
@@ -64,50 +53,44 @@
       spruce = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         specialArgs = {
-          inherit inputs outputs stateVersion home-manager;
+          inherit
+            inputs
+            outputs
+            username
+            stateVersion
+            home-manager;
           hostname = "spruce";
-          username = "simme";
         };
         modules = [
           ./systems
           ./modules/apps/nvim
           ./modules/apps/zsh
+          ./modules/base
+          ./modules/homebrew
+          ./modules/packages
           home-manager.darwinModules.home-manager
-          nix-homebrew.darwinModules.nix-homebrew {
-            nix-homebrew = {
-              enable = true;
-              enableRosetta = true;
-              user = username;
-              taps = {
-                "homebrew/homebrew-core" = homebrew-core;
-                "homebrew/homebrew-cask" = homebrew-cask;
-              };
-              mutableTaps = false;
-            };
-          }
+          nix-homebrew.darwinModules.nix-homebrew
         ];
       };
     };
     nixosConfigurations = {
       juniper = nixpkgs-unstable.lib.nixosSystem {
         specialArgs = {
-          inherit inputs outputs stateVersion home-manager;
+          inherit
+            inputs
+            outputs
+            stateVersion
+            username
+            home-manager;
+
           hostname = "juniper";
-          username = "simme";
           hostid = "d4b231f1";
         };
         modules = [
           ./hardware
           ./systems
           ./modules
-          home-manager.nixosModule {
-            home-manager = {
-              extraSpecialArgs = {
-                inherit inputs outputs stateVersion username;
-              };
-              users.simme = ./. + "/home/simme";
-            };
-          }
+          home-manager.nixosModule
         ];
       };
     };
