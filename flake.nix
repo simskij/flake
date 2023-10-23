@@ -1,63 +1,95 @@
 {
   description = "@simskij's NixOS Configuration Flake";
   inputs = {
-    nixpkgs.url = "nixpkgs/master";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+    crafts = {
+      url = "github:jnsgruk/crafts-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs =
-    { self
-    , disko
-    , nixpkgs
-    , nixpkgs-unstable
-    , home-manager
-    , ...
-    } @ inputs:
-    let
-      inherit (self) outputs;
-      stateVersion = "22.11";
-      system = "x86_64-linux";
-    in
-    {
-      overlays = import ./overlays { inherit inputs; };
-
-      homeConfigurations = {
-        "simme" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          modules = [ ./home/simme ];
+  outputs = {
+    self,
+    nixpkgs,
+    nix-darwin,
+    nix-homebrew,
+    home-manager,
+    ...
+  } @ inputs:
+  let
+    inherit (self) outputs;
+    username = "simme";
+    stateVersion = "22.11";
+  in
+  {
+    darwinConfigurations = {
+      spruce = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            username
+            stateVersion
+            home-manager;
+          hostname = "spruce";
         };
-      };
-
-      nixosConfigurations = {
-        pine = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs stateVersion;
-            hostname = "pine";
-            hostid = "007f0200";
-            username = "simme";
-          };
-          modules = [ ./host ];
-        };
-
-        juniper = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs stateVersion;
-            hostname = "juniper";
-            hostid = "d4b231f1";
-            username = "simme";
-          };
-          modules = [ ./host ];
-        };
+        modules = [
+          ./systems
+          ./modules/apps/nvim
+          ./modules/apps/zsh
+          ./modules/base
+          ./modules/homebrew
+          ./modules/packages
+          home-manager.darwinModules.home-manager
+          nix-homebrew.darwinModules.nix-homebrew
+        ];
       };
     };
+    nixosConfigurations = {
+      juniper = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            stateVersion
+            username
+            home-manager;
+
+          hostname = "juniper";
+          hostid = "d4b231f1";
+        };
+        modules = [
+          ./hardware
+          ./systems
+          ./modules
+          home-manager.nixosModule
+        ];
+      };
+    };
+  };
 }
