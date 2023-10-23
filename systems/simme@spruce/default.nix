@@ -11,7 +11,6 @@ let
 in
 {
   arctic = {
-    homebrew = on;
     apps = {
       nvim = on // {
         settings = {

@@ -1,5 +1,0 @@
-{ inputs, system, ... }: {
-  imports = [
-    ./development
-  ];
-}

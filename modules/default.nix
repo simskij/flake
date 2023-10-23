@@ -3,6 +3,8 @@
   pkgs,
   username,
   stateVersion,
+  lib,
+  system,
   ...
 }:
 {
@@ -10,7 +12,6 @@
     ./apps
     ./base
     ./desktop
-    ./homebrew
     ./network
     ./packages
     ./settings

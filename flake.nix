@@ -4,7 +4,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-darwin = {
       url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
       url = "github:nix-community/disko";
@@ -28,14 +28,13 @@
     };
     nix-homebrew = {
       url = "github:zhaofengli-wip/nix-homebrew";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
     nix-darwin,
     nix-homebrew,
     home-manager,
@@ -72,7 +71,7 @@
       };
     };
     nixosConfigurations = {
-      juniper = nixpkgs-unstable.lib.nixosSystem {
+      juniper = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit
             inputs
