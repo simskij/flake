@@ -1,4 +1,4 @@
-{ username, hostname, ... } : {
+{ username, hostname, lib, ... } : {
   imports = [
     (./. + "/${username}@${hostname}")
   ];

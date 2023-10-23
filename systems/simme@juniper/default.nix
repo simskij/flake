@@ -19,6 +19,10 @@
     };
     
     desktop = on // {
+      monitors = {
+        primary = "HDMI-A-1";
+        secondary = "DP-4";
+      };
       keyboard = {
         layout = "us";
         variant = "mac";
@@ -44,13 +48,18 @@
           numbers = true;
         };
         plugins = {
-          devicons = on;
-          easy-align = on;
-          gitgutter = on;
-          mason = on;
-          telescope = on;
-          terminal = on;
-          tree = on;
+          breadcrumbs = on;
+          bufferline  = on;
+          cmp         = on;
+          devicons    = on;
+          easy-align  = on;
+          gitgutter   = on;
+          illuminate  = on;
+          lualine     = on;
+          lsp         = on;
+          telescope   = on;
+          terminal    = on;
+          tree        = on;
         };
       };
       chromium    = on // {

@@ -3,6 +3,8 @@
   lib,
   pkgs,
   username,
+  inputs,
+  system,
   ...
 }:
 let
@@ -86,11 +88,6 @@ in
       };
     };
 
-    nixpkgs = {
-      config = {
-        allowUnfree = cfg.unfree;
-      };
-    };
 
     fonts = {
       fontconfig.enable = true;
