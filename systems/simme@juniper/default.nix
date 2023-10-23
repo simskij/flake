@@ -1,4 +1,14 @@
-{ pkgs, ... } : let on = { enable = true; }; in
+{
+  pkgs,
+  inputs,
+  outputs,
+  username,
+  stateVersion,
+  ...
+}:
+let
+  on = { enable = true; };
+in
 {
   arctic = { 
     settings = {
@@ -12,13 +22,11 @@
       ];
     };
     
-    home-manager = {
-      extraSpecialArgs = {
-        inherit inputs outputs stateVersion username;
-      };
-    };
-    
     desktop = on // {
+      monitors = {
+        primary = "HDMI-A-1";
+        secondary = "DP-4";
+      };
       keyboard = {
         layout = "us";
         variant = "mac";
@@ -44,13 +52,18 @@
           numbers = true;
         };
         plugins = {
-          devicons = on;
-          easy-align = on;
-          gitgutter = on;
-          mason = on;
-          telescope = on;
-          terminal = on;
-          tree = on;
+          breadcrumbs = on;
+          bufferline  = on;
+          cmp         = on;
+          devicons    = on;
+          easy-align  = on;
+          gitgutter   = on;
+          illuminate  = on;
+          lualine     = on;
+          lsp         = on;
+          telescope   = on;
+          terminal    = on;
+          tree        = on;
         };
       };
       chromium    = on // {
@@ -156,32 +169,24 @@
       xdg-utils
     ];
   };
-
-  programs = {
-    gh = {
-      enable = true;
-      gitCredentialHelper = {
-          enable = true;
-      };
-      extensions = [
-        pkgs.gh-dash
-      ];
-    };
-    git = {
-      enable = true;
-      userName = "Simon Aronsson";
-      userEmail = "simme@arcticbit.se";
-      signing = {
-        key = "19220CB4C0D65027";
-        signByDefault = true;
-      };
-      lfs = {
+  home-manager.users."${username}" = {
+    programs = {
+      git = {
         enable = true;
-      };
-      extraConfig = {
-        init = {
-          defaultBranch = "main";
+        userName = "Simon Aronsson";
+        userEmail = "simme@arcticbit.se";
+        signing = {
+          key = "19220CB4C0D65027";
+          signByDefault = true;
         };
+        lfs = {
+          enable = true;
+        };
+	extraConfig = {
+	  init = {
+	    defaultBranch = "main";
+	  };
+	};
       };
     };
   };

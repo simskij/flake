@@ -18,13 +18,18 @@ in
       default = pkgs.neovim-unwrapped;
     };
     plugins = {
-      mason.enable      = mkEnableOption "";
-      devicons.enable   = mkEnableOption "";
-      tree.enable       = mkEnableOption "";
-      easy-align.enable = mkEnableOption "";
-      gitgutter.enable  = mkEnableOption "";
-      telescope.enable  = mkEnableOption "";
-      terminal.enable   = mkEnableOption "";
+      breadcrumbs.enable = mkEnableOption "";
+      bufferline.enable  = mkEnableOption "";
+      cmp.enable         = mkEnableOption "";
+      devicons.enable    = mkEnableOption "";
+      easy-align.enable  = mkEnableOption "";
+      gitgutter.enable   = mkEnableOption "";
+      illuminate.enable  = mkEnableOption "";
+      lualine.enable     = mkEnableOption "";
+      lsp.enable         = mkEnableOption "";
+      telescope.enable   = mkEnableOption "";
+      terminal.enable    = mkEnableOption "";
+      tree.enable        = mkEnableOption "";
     };
     settings = {
       tab-width = mkOption { type = types.int; default = 4; };
@@ -102,27 +107,157 @@ in
                             integrations = {
                                 nvimtree = true,
                                 telescope = true,
+                                navic = {
+                                  enabled = true,
+                                  custom_bg = "NONE",
+                                },
+                                illuminate = {
+                                  enable = true,
+                                  lsp = false
+                                },
                             }
                         })
                         vim.cmd.colorscheme "catppuccin"
                     '';
                   }
                 ]
-                ++ (
-                  if cfg.plugins.mason.enable then [{
-                    plugin = mason-lspconfig-nvim;
+                ++ (if cfg.plugins.breadcrumbs.enable then [{
+                  plugin = nvim-navic;
+                  type = "lua";
+                  config = ''
+                    require('nvim-navic').setup({
+                      highlight = true,
+                      lsp = {
+                        auto_attach = true
+                      }
+                    })
+                  '';
+                
+                }] else [])
+                ++ (if cfg.plugins.cmp.enable then [
+                  luasnip
+                  cmp_luasnip
+                  cmp-buffer
+                  cmp-path
+                  cmp-cmdline
+                  {
+                    plugin = nvim-cmp;
                     type = "lua";
                     config = ''
-                      require("mason").setup()
-                      require("mason-lspconfig").setup({
-                        ensure_installed = {
-                          "pyright",
-                          "ruff_lsp",
-                          "pylsp",
-                          "nil_ls"
+                      local cmp = require('cmp')
+                      cmp.setup({
+                        snippet = {
+                          expand = function (args)
+                            require('luasnip').lsp_expand(args.body)
+                          end,
+                        },
+                        window = {
+                          completion = cmp.config.window.bordered(),
+                          documentation = cmp.config.window.bordered(),
+                        },
+                        sources = {
+                          { name = 'nvim_lsp' },
+                          { name = 'luasnip'  },
+                          { name = 'buffer'   },
                         },
                       })
                     '';
+                  }] else [])
+                ++ (
+                  if cfg.plugins.illuminate.enable then [{
+                    plugin = vim-illuminate;
+                    type = "lua";
+                    config = ''
+                      require('illuminate').configure({
+                        providers = {
+                          "lsp",
+                          "treesitter",
+                          "regex",
+                        },
+                        delay = 120,
+                        filetypes_denylist = {
+                          "dirvish",
+                          "fugitive",
+                          "alpha",
+                          "NvimTree",
+                          "lazy",
+                          "neogitstatus",
+                          "Trouble",
+                          "lir",
+                          "Outline",
+                          "spectre_panel",
+                          "toggleterm",
+                          "DressingSelect",
+                          "TelescopePrompt",
+                        },
+                        under_cursor = true,
+                      })
+                    '';
+                  }] else [])
+                ++ (
+                  if cfg.plugins.bufferline.enable then [{
+                    plugin = bufferline-nvim;
+                    type = "lua";
+                    config = ''
+                      require("bufferline").setup({
+                        highlights = require("catppuccin.groups.integrations.bufferline").get(),
+                        options = {
+                          offsets = {
+                            {
+                              filetype = "NvimTree",
+                              text = "",
+                              highlight = "PanelHeading",
+                              padding = 1,
+                            }
+                          },
+                          separator_style = "thin",
+                        }
+                      })
+                    '';
+                  }] else [])
+                ++ (
+                  if cfg.plugins.lsp.enable then [
+                    nvim-lspconfig
+                    mason-nvim
+                    mason-lspconfig-nvim
+                    {
+                      plugin = lsp-zero-nvim;
+                      type = "lua";
+                      config = ''
+                        local zero = require('lsp-zero')
+                        
+                        require('mason').setup()
+                        require('mason-lspconfig').setup({
+                          ensure_installed = {
+                            "bashls",
+                            "gopls",
+                            "lua_ls",
+                            "nil_ls",
+                            "pylsp",
+                            "terraformls",
+                          },
+                          handlers = {
+                            zero.default_setup,
+                          },
+                        })
+
+                        zero.on_attach(
+                          function(client, buffer)
+                            zero.default_keymaps({buffer = bufnr})
+                            if client.server_capabilities.documentSymbolProvider then
+                              require('nvim-navic').attach(client, bufnr)
+                            end 
+                          end
+                        )
+                        zero.setup_servers({
+                          "bashls",
+                          "gopls",
+                          "lua_ls",
+                          "nil_ls",
+                          "pylsp",
+                          "terraformls"
+                        })
+                      '';
                   }] else [])
                 ++ (
                   if cfg.plugins.devicons.enable then [
@@ -136,6 +271,28 @@ in
                       require('nvim-tree').setup({
                         update_cwd = true
                       })
+                    '';
+                  }] else [])
+                ++ (
+                  if cfg.plugins.lualine.enable then [{
+                    plugin = lualine-nvim;
+                    type = "lua";
+                    config = ''
+                      require('lualine').setup {
+
+                        sections = {
+                          lualine_a = {
+                            { 'mode', fmt = function() return " " end }
+                          },
+                          lualine_c = {}
+                        },
+                        options = {
+                          theme = "catppuccin",
+                          component_separators = { left = "", right = "" },
+                          section_separators = { left = "", right = "" },
+                          globalstatus = true
+                        }
+                      }
                     '';
                   }] else [])
                 ++ (
