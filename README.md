@@ -17,12 +17,12 @@ Currently, I'm using this flake to configure the following machines.
 
 ### Structure
 
-| Path               | Content                                         |
-| ------------------ | ----------------------------------------------- |
-| `.               ` |                                                 |
-| `├─ hardware     ` | host-specific hardware configuration            |
-| `├─ systems      ` | system and user configuration                   |
-| `└─ modules      ` | abstraction of different configuration aspects  |
+| Path                 | Description                                     |
+| -------------------- | ----------------------------------------------- |
+| `.               `   |                                                 |
+| `├─ hardware     `   | host-specific hardware configuration            |
+| `├─ systems      `   | system and user configuration                   |
+| `└─ modules      `   | abstraction of different configuration aspects  |
 | `    ├─ base       ` | base configuration for all hosts                |
 | `    ├─ apps       ` | options available under `arctic.apps`           |
 | `    ├─ desktop    ` | options available under `arctic.desktop`        |
