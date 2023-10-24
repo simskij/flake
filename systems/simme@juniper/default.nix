@@ -1,9 +1,5 @@
 {
   pkgs,
-  inputs,
-  outputs,
-  username,
-  stateVersion,
   ...
 }:
 let
@@ -46,6 +42,16 @@ in
       steam       = on;
       tailscale   = on;
       zip         = on;
+      git         = on // {
+        meta = {
+          name = "Simon Aronsson";
+          email = "simme@arcticbit.se";
+        };
+        signing = {
+          enable = true; 
+          key = "19220CB4C0D65027";
+        };
+      };
       nvim = on // {
         settings = {
           tab-width = 2;
@@ -169,26 +175,4 @@ in
       xdg-utils
     ];
   };
-  home-manager.users."${username}" = {
-    programs = {
-      git = {
-        enable = true;
-        userName = "Simon Aronsson";
-        userEmail = "simme@arcticbit.se";
-        signing = {
-          key = "19220CB4C0D65027";
-          signByDefault = true;
-        };
-        lfs = {
-          enable = true;
-        };
-	extraConfig = {
-	  init = {
-	    defaultBranch = "main";
-	  };
-	};
-      };
-    };
-  };
-
 }
