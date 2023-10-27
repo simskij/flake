@@ -16,13 +16,18 @@ in
     };
 
     config = {
+        nixpkgs.config.joypixels.acceptLicense = true;
         fonts = {
-            fontconfig.enable = true;
-            packages = with pkgs; mkIf ((lib.lists.count (a: true) cfg) > 0) [
+            fontconfig = {
+              enable = true;
+            };
+            packages = with pkgs; [ joypixels ] ++
+              
+              (if ((lib.lists.count (a: true) cfg) > 0) then [
               (nerdfonts.override {
                 fonts = cfg;
               })
-            ];
+            ] else []);
         };
     };
 }

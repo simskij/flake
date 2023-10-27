@@ -14,6 +14,11 @@ let
 in
   with lib;
 {
+
+  imports = [
+    ./nerd-fonts
+  ];
+
   options = {
     arctic = {
       settings = {
@@ -86,16 +91,6 @@ in
       settings = {
         auto-optimise-store = true;
       };
-    };
-
-
-    fonts = {
-      fontconfig.enable = true;
-      packages =
-        with pkgs;
-        mkIf (lib.lists.count (a: true) nf > 0) [
-          (nerdfonts.override { fonts = nf; })
-        ];
     };
 
     services.pipewire = mkIf cfg.audio {

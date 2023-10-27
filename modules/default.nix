@@ -3,8 +3,6 @@
   pkgs,
   username,
   stateVersion,
-  lib,
-  system,
   ...
 }:
 {
@@ -18,6 +16,9 @@
   ];
   
   nixpkgs = {
+    overlays = [
+     inputs.crafts.overlay
+    ];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
@@ -58,6 +59,10 @@
               color_theme = "catppuccin";
             };
           };
+        };
+
+        services = {
+          keybase.enable = true;
         };
 
         home = {
@@ -117,16 +122,18 @@
               variant = "Macchiato";
               accent = "Blue";
             })
-            # charmcraft
-            # snapcraft
-            # multipass
-            # juju
+            charmcraft
+            snapcraft
+            multipass
+            juju
             appimage-run
             blueberry
             cinnamon.nemo
             direnv
             flameshot
             grim
+            keybase-gui
+            kbfs
             libnotify
             libsForQt5.qtstyleplugin-kvantum
             lutris
