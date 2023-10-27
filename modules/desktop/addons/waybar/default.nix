@@ -34,7 +34,7 @@ in
                   "clock"
                 ];
                 modules-center = [
-                  "wlr/workspaces"        
+                  "hyprland/workspaces"        
                 ];
                 modules-right = [
                   "pulseaudio"

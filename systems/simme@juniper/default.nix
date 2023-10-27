@@ -1,4 +1,10 @@
-{ pkgs, ... } : let on = { enable = true; }; in
+{
+  pkgs,
+  ...
+}:
+let
+  on = { enable = true; };
+in
 {
   arctic = { 
     settings = {
@@ -12,13 +18,11 @@
       ];
     };
     
-    home-manager = {
-      extraSpecialArgs = {
-        inherit inputs outputs stateVersion username;
-      };
-    };
-    
     desktop = on // {
+      monitors = {
+        primary = "HDMI-A-1";
+        secondary = "DP-4";
+      };
       keyboard = {
         layout = "us";
         variant = "mac";
@@ -38,19 +42,34 @@
       steam       = on;
       tailscale   = on;
       zip         = on;
+      git         = on // {
+        meta = {
+          name = "Simon Aronsson";
+          email = "simme@arcticbit.se";
+        };
+        signing = {
+          enable = true; 
+          key = "19220CB4C0D65027";
+        };
+      };
       nvim = on // {
         settings = {
           tab-width = 2;
           numbers = true;
         };
         plugins = {
-          devicons = on;
-          easy-align = on;
-          gitgutter = on;
-          mason = on;
-          telescope = on;
-          terminal = on;
-          tree = on;
+          breadcrumbs = on;
+          bufferline  = on;
+          cmp         = on;
+          devicons    = on;
+          easy-align  = on;
+          gitgutter   = on;
+          illuminate  = on;
+          lualine     = on;
+          lsp         = on;
+          telescope   = on;
+          terminal    = on;
+          tree        = on;
         };
       };
       chromium    = on // {

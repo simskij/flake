@@ -3,6 +3,7 @@ _: {
     ./1password
     ./chromium
     ./fileutils
+    ./git
     ./gpg
     ./kitty
     ./lxd
