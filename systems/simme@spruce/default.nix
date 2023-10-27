@@ -11,6 +11,15 @@ let
 in
 {
   arctic = {
+    homebrew = on // {
+      brews = [
+        "eza"
+        "ripgrep"
+      ];
+      casks = [
+        "element"
+      ];
+    };
     apps = {
       nvim = on // {
         settings = {

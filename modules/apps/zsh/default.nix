@@ -39,6 +39,7 @@ in
 
               enableCompletion = true;
               enableAutosuggestions = true;
+              initExtra = cfg.init;
               syntaxHighlighting.enable = true;
 
               history = {
