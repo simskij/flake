@@ -33,4 +33,4 @@ heavily using modules and options to create an opinionated configuration namespa
 
 ### Looks
 
-![./screenshot.png]()
+![](screenshot.png)
