@@ -2,6 +2,8 @@
   description = "@simskij's NixOS Configuration Flake";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/master";
+
     nix-darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,7 +14,7 @@
     };
     crafts = {
       url = "github:jnsgruk/crafts-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.unstable.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -35,6 +37,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-stable,
     nix-darwin,
     nix-homebrew,
     home-manager,

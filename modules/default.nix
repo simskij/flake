@@ -18,6 +18,17 @@
   nixpkgs = {
     overlays = [
      inputs.crafts.overlay
+     (final: _: {
+       stable = import inputs.nixpkgs-stable {
+         system = "x86_64-linux";
+         config = {
+           allowUnfree = true;
+           permittedInsecurePackages = [
+             "electron-25.9.0"
+           ];
+         };
+       };
+     })
     ];
     config = {
       allowUnfree = true;
@@ -139,13 +150,12 @@
             lutris
             lynx
             matterhorn
-            mattermost-desktop
             mudlet
-            obsidian
+            stable.obsidian
+            stable.mattermost-desktop
             rambox
             slurp
             spotify
-            spotify-tui
             swayidle
             swaylock
             tdesktop

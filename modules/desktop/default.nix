@@ -33,11 +33,11 @@ in
     };
     keyboard = {
       layout  = mkOption {
-        type = types.string;
+        type = types.str;
         default = "us";
       };
       variant = mkOption {
-        type = types.string;
+        type = types.str;
         default = "mac";
       };
     };
@@ -63,6 +63,11 @@ in
     xdg = {
       portal = {
         enable = true;
+        config = {
+          common = {
+            default = "*";
+          };
+        };
         extraPortals = with pkgs; [
           xdg-desktop-portal-gtk
           xdg-desktop-portal-hyprland
@@ -81,9 +86,9 @@ in
             file = {
               ".config/hypr/hyprpaper.conf" = {
                 text = ''
-                  preload = /home/simme/.wallpaper.png
-                  wallpaper = HDMI-A-1,/home/simme/.wallpaper.png
-                  wallpaper = DP-4,/home/simme/.wallpaper.png
+                  preload = /home/simme/.wallpaper.jpg
+                  wallpaper = HDMI-A-1,/home/simme/.wallpaper.jpg
+                  wallpaper = DP-4,/home/simme/.wallpaper.jpg
                 '';
               };
 
@@ -149,7 +154,6 @@ in
             windowManager = {
               hyprland = {
                 enable = true;
-                recommendedEnvironment = true;
                 xwayland = {
                   enable = true;
                 };
@@ -287,8 +291,10 @@ in
         ];
       };
       xserver = {
-        layout = cfg.keyboard.layout;
-        xkbVariant = cfg.keyboard.variant;
+        xkb = {
+          layout = cfg.keyboard.layout;
+          variant = cfg.keyboard.variant;
+        };
         displayManager = {
           gdm = on // { wayland = true; };
         };

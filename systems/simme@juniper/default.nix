@@ -4,6 +4,7 @@
 }:
 let
   on = { enable = true; };
+  off = { enable = false; };
 in
 {
   arctic = { 
@@ -38,7 +39,7 @@ in
       gpg         = on;
       lxd         = on;
       netutils    = on;
-      onepassword = on;
+      onepassword = off;
       steam       = on;
       tailscale   = on;
       zip         = on;
@@ -126,11 +127,6 @@ in
     };
     packages = with pkgs;
     [
-      jetbrains.goland
-      jetbrains.pycharm-professional
-      jetbrains.webstorm
-    ] ++
-    [
       (catppuccin-kvantum.override {
         variant = "Macchiato";
         accent = "Blue";
@@ -151,10 +147,8 @@ in
       kubectl
       libsForQt5.qtstyleplugin-kvantum
       lutris
-      mattermost-desktop
       mudlet
       nodejs
-      obsidian
       rambox
       rustup
       skopeo

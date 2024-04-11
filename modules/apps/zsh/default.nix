@@ -38,7 +38,7 @@ in
               dotDir = cfg.dots;
 
               enableCompletion = true;
-              enableAutosuggestions = true;
+              autosuggestion.enable = true;
               initExtra = cfg.init;
               syntaxHighlighting.enable = true;
 
