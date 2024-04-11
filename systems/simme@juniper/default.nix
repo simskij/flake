@@ -154,6 +154,7 @@ in
       skopeo
       slurp
       spotify
+      swappy
       swayidle
       swaylock
       syft

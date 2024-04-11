@@ -30,3 +30,7 @@ heavily using modules and options to create an opinionated configuration namespa
 | `    ├─ network    ` | options available under `arctic.network`        |
 | `    ├─ packages   ` | options available under `arctic.packages`       |
 | `    └─ settings   ` | options available under `arctic.settings`       |
+
+### Looks
+
+![./screenshot.png]()

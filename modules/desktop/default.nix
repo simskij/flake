@@ -89,6 +89,7 @@ in
                   preload = /home/simme/.wallpaper.jpg
                   wallpaper = HDMI-A-1,/home/simme/.wallpaper.jpg
                   wallpaper = DP-4,/home/simme/.wallpaper.jpg
+                  splash = false
                 '';
               };
 
@@ -205,6 +206,8 @@ in
                   bind = $mod SHIFT, right, movewindow, r
                   bind = $mod SHIFT, up, movewindow, u
                   bind = $mod SHIFT, down, movewindow, d
+
+                  bind = $mod CTRL, 3, exec, grim -g "$(slurp)" - | swappy -f -
 
                   bindm = SUPER, mouse:272, movewindow
                   bindm = SUPER, mouse:273, resizewindow
